@@ -1,4 +1,7 @@
 # Naves espaciales
+ 
+[![Build Status](https://travis-ci.org/wollok/naves-espaciales.svg?branch=master)](https://travis-ci.org/wollok/naves-espaciales)
+
 
 Debemos armar un modelo de naves espaciales.
 
