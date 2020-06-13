@@ -42,7 +42,25 @@ Agregar al modelo el _combustible_ de cada nave, medido en litros. Se tiene que 
 Para **todas** las naves, agregar como acción adicional en la preparación de un viaje, cargar 30000 litros, y acelerar 5000 kms/seg (para las naves de combate, se acelera 5000 y luego otros 15000, total 20000).
 
 
-## Reacción ante amenazas
+## Tranquilidad, y dos variantes nuevas de nave
+En esta etapa, vamos a agregar dos variantes de nave, más una nueva consulta que tienen que poder manejar todas las naves.
+
+Las dos **variantes nuevas** son
+1. **Nave hospital**  
+Es una variante de la nave de pasajeros. Debe registrar si tiene o no preparados los quirófanos.  
+1. **Nave de combate sigilosa**  
+Es una variante de la nave de combate. La única diferencia se refiere al criterio de tranquilidad, que describimos abajo.
+
+La **nueva consulta** es poder preguntarle a cualquier nave, si _está tranquila_.
+Hay dos condiciones comunes a todas las naves: tener, al menos, 4000 litros de combustible; y que la velocidad no supere los 12000 kms/seg.
+Para algunos tipos de nave se establecen condiciones _adicionales_, o sea, que se **agregan** a las comunes para todas las naves.
+- Naves-baliza: el color de la baliza debe ser distinto de rojo.
+- Naves de combate: los misiles no deben estar desplegados.
+- Naves de combate sigilosas: además de lo anterior, deben estar visibles. Esta es (por ahora) la única particularidad de las naves de combate sigilosas.
+- Naves hospital: los quirófanos tienen que no estar preparados. O sea, si en una nave hospital los quirófanos están preparados, entonces no está tranquila.
+
+
+## Reacción ante amenazas - para los tres tipos principales de nave
 Agregar a todas las naves la capacidad de responder al mensaje `recibirAmenaza()`.  
 _Cualquier_ nave, al recibir una amenaza, debe hacer dos cosas: primero _escapar_, y después _avisar_. 
 Por otro lado, lo que hace cada nave para escapar y para avisar, depende del tipo de nave según lo que se indica a continuación.
@@ -54,20 +72,11 @@ _Escapar_ es duplicar su velocidad, _avisar_ es darle a cada pasajero una ració
 _Escapar_ es ejecutar dos veces la acción de acercarse un poco al Sol. _Avisar_ es emitir el mensaje "Amenaza recibida".
 
 
-## Más variantes de nave
-Agregar al modelo estas dos variantes adicionales de nave
+## Reacción ante amenazas - detalles de las naves especiales
+Realizar los ajustes necesarios en el comportamiento de las nave-hospital, y de las naves de combate sigilosas, para cumplir con las características que se indican.
 1. **Nave hospital**  
-Es una variante de la nave de pasajeros. Debe registrar si tiene o no preparados los quirófanos.  
 Cuando recibe una amenaza, después de escapar y avisar, debe preparar los quirófanos.
 1. **Nave de combate sigilosa**  
-Es una variante de la nave de combate. Para escapar, además de lo que hace cualquier nave de combate, despliega misiles y se pone invisible.  
+Para escapar, además de lo que hace cualquier nave de combate, despliega misiles y se pone invisible.  
 
 
-## Tranquilidad
-Agregar a cualquier nave, la capacidad de preguntarle si _está tranquila_.
-Hay dos condiciones comunes a todas las naves: tener, al menos, 4000 litros de combustible; y que la velocidad no supere los 12000 kms/seg.
-Para algunos tipos de nave se establecen condiciones _adicionales_, o sea, que se **agregan** a las comunes para todas las naves.
-- Naves-baliza: el color de la baliza debe ser distinto de rojo.
-- Naves de combate: los misiles no deben estar desplegados.
-- Naves de combate sigilosas: además de lo anterior, deben estar visibles.
-- Naves hospital: los quirófanos no deben estar preparados.
