@@ -1,8 +1,7 @@
 class NaveEspacial {
-	var velocidad = 0
-	var direccion = 0	
+	var property velocidad = 0
+	var property direccion = 0	
 	
-	method velocidad(cuanto) { velocidad = cuanto }
 	method acelerar(cuanto) { velocidad = (velocidad + cuanto).min(100000) }
 	method desacelerar(cuanto) { velocidad -= cuanto }
 	
@@ -10,6 +9,6 @@ class NaveEspacial {
 	method escaparDelSol() { direccion = -10 }
 	method ponerseParaleloAlSol() { direccion = 0 }
 	
-	method acercarseUnPocoAlSol() { direccion += 1 }
-	method alejarseUnPocoDelSol() { direccion -= 1 }
+	method acercarseUnPocoAlSol() { direccion = direccion + 1 }
+	method alejarseUnPocoDelSol() { direccion = direccion - 1 }
 }
