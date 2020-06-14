@@ -20,6 +20,10 @@ class NaveEspacial {
 		self.cargarCombustible(30000)
 		self.acelerar(5000)
 	}
+	
+	method estaTranquila() {
+		return combustible >= 4000 and velocidad <= 12000 
+	}
 }
 
 class NaveBaliza inherits NaveEspacial {
@@ -66,8 +70,40 @@ class NaveDeCombate inherits NaveEspacial {
 		self.acelerar(15000)
 		// completar
 	}
+	method misilesDesplegados() {
+		return true 
+		// cambiar por implementación correcta
+	}
+	method estaVisible() {
+		return true 
+		// cambiar por implementación correcta
+	}
 	
+	override method estaTranquila() {
+		return super() and not self.misilesDesplegados()
+	}
 	// el resto se lo dejamos	
 }
 
+class NaveHospital inherits NaveDePasajeros {
+	var property quirofanosPreparados = false
+	override method estaTranquila() {
+		return super() and not self.quirofanosPreparados()
+	}
+}
+
+class NaveDeCombateSigilosa inherits NaveDeCombate {
+	override method estaTranquila() {
+		return super() and self.estaVisible()
+	}
+}
+
+class NaveDeCombateSigilosaPlus inherits NaveDeCombateSigilosa {
+	method estaPerfecta() {
+		return self.estaTranquila() or self.combustible() > 200000
+	}
+	override method estaVisible() {
+		return false
+	}
+}
 
