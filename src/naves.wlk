@@ -1,6 +1,7 @@
 class NaveEspacial {
 	var property velocidad = 0
 	var property direccion = 0	
+	var property combustible = 0
 	
 	method acelerar(cuanto) { velocidad = (velocidad + cuanto).min(100000) }
 	method desacelerar(cuanto) { velocidad -= cuanto }
@@ -11,9 +12,21 @@ class NaveEspacial {
 	
 	method acercarseUnPocoAlSol() { direccion = direccion + 1 }
 	method alejarseUnPocoDelSol() { direccion = direccion - 1 }
+	
+	method cargarCombustible(cuanto) { combustible += cuanto }
+	method descargarCombustible(cuanto) { combustible -= cuanto }
+
+	method prepararViaje() {
+		self.cargarCombustible(30000)
+		self.acelerar(5000)
+	}
 }
 
 class NaveBaliza inherits NaveEspacial {
+	override method prepararViaje() {
+		super()
+		// completar
+	}
 	// esta se las dejamos
 }
 
@@ -35,6 +48,12 @@ class NaveDePasajeros inherits NaveEspacial {
 	method descargarBebida(cuantasRaciones) {
 		racionesDeBebida = (racionesDeBebida - cuantasRaciones).max(0)
 	}
+	override method prepararViaje() {
+		super()
+		self.cargarComida(pasajeros * 4)
+		self.cargarBebida(pasajeros * 6)
+		self.acercarseUnPocoAlSol()
+	}
 }
 
 class NaveDeCombate inherits NaveEspacial {
@@ -42,6 +61,12 @@ class NaveDeCombate inherits NaveEspacial {
 	method primerMensajeEmitido() {
 		return mensajesEmitidos.first()
 	}
+	override method prepararViaje() {
+		super()
+		self.acelerar(15000)
+		// completar
+	}
+	
 	// el resto se lo dejamos	
 }
 
